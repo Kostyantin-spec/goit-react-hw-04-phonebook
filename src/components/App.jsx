@@ -11,12 +11,11 @@ const phoneContacts = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-
 export const App = () => {
   const [contacts, setContacts] = useState(() => {
     return JSON.parse(window.localStorage.getItem('contacts')) ?? phoneContacts;
   });
-  
+
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
@@ -45,14 +44,16 @@ export const App = () => {
 
   const onDeleteContact = contactId => {
     setContacts(prevContacts =>
-      prevContacts.filter(contact => contact.id !== contactId));
+      prevContacts.filter(contact => contact.id !== contactId)
+    );
   };
 
   const getVisibleContacts = () => {
     const normalizedFilter = filter.toLowerCase();
 
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter));
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
   };
 
   const visibleContacts = getVisibleContacts();
